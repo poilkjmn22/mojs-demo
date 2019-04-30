@@ -1,8 +1,6 @@
-import '../css/index.css'
-
-import '../css/sass/shape'
-import mojs from 'mo-js'
+import '../../../css/sass/shape'
 import * as _ from 'lodash-es'
+import mojs from 'mo-js'
 const color1 = '#c159b0',
     color2 = '#6dbc99',
     color3 = '#f4a86e',
@@ -24,9 +22,17 @@ const zigzag = new mojs.Shape({
     top: pos.row1,
     left: pos.col1,
     y: -10,
+    scaleX: {
+        0.5: 3
+    },
     fill: 'none',
     stroke: color1,
-    isShowStart: true,
+    isShowStart: false,
+    // isYoyo: true,
+    // repeat: 999,
+    // easing: 'sin.inout',
+    // delay: 0,
+    duration: 1000
 });
 
 const cross = new mojs.Shape({
@@ -37,7 +43,15 @@ const cross = new mojs.Shape({
     top: pos.row1,
     left: pos.col2,
     stroke: color2, //no fill for this one
-    isShowStart: true,
+    isShowStart: false,
+    angle: {
+        0: 180
+    },
+    // isYoyo: true,
+    // repeat: 999,
+    // easing: 'sin.inout',
+    // delay: 0,
+    duration: 1000,
     y: -25
 });
 
@@ -117,19 +131,18 @@ const polygon2 = new mojs.Shape({
 });
 
 var tl = new mojs.Timeline({
-  isYoyo: true,
-  delay: 600,
-  repeat: 999,
-})
-
-_.each([zigzag, cross, equal, curve, rect, polygon1, circle, polygon2], shape => {
-  shape.tune({
-    isShowStart: true,
-    angle: {0: 360},
-    duration: 1500,
-    easing: 'elastic.out'
-  })
-  tl.append(shape)
-})
-
-tl.play()
+        delay: 600,
+        isYoyo: true,
+        easing: 'elastic.out',
+        repeat: 888
+    })
+    _.each([zigzag, cross, equal, curve, rect, polygon1, circle,  polygon2], shape => {
+      shape.tune({
+        isShowStart: true,
+        duration: 1500,
+        angle: {0: 360},
+        easing: 'elastic.out'
+      })
+      tl.append(shape)
+    })
+    tl.play()
