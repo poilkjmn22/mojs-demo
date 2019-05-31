@@ -33,7 +33,13 @@ load('/assets/svgs/singing-bird.svg', svg => {
       class: 'path-note'
     })
     svg.appendChild(note2)
-    var wing = svg.querySelector('#wing')
+    var note3 = createSVG('path')
+    attr(note3, {
+      d: note.getAttribute('d'),
+      fill: color3,
+      class: 'path-note'
+    })
+    svg.appendChild(note3)
 
     const laser1E = mojs.easing.path('M0,400S58,111.1,80.5,175.1s43,286.4,63,110.4,46.3-214.8,70.8-71.8S264.5,369,285,225.5s16.6-209.7,35.1-118.2S349.5,258.5,357,210,400,0,400,0');
 
@@ -46,16 +52,42 @@ load('/assets/svgs/singing-bird.svg', svg => {
         onUpdate(ep, p, isForward) {
             // var laser1EProgress = laser1E(ep);
             // console.dir(laser1EProgress)
-            var customEP = mojs.easing.back.out(p)
-            var customXEP = mojs.easing.circ.in(p)
             attr(note, {
-                transform: `translate(${customXEP * 80},${-160 * ep }) rotate(${60 * customEP - 40}, ${x}, ${y + height})`,
+                transform: `translate(${mojs.easing.ease.out(p) * 80},${-160 * mojs.easing.back.out(p) }) rotate(${60 * mojs.easing.sin.out(p) - 40}, ${x}, ${y + height})`,
                 // style: `opacity: ${1 - ep}`
             })
 
             attr(note2, {
-                transform: `translate(${customXEP * -80},${-80 * ep }) rotate(${-60 * customEP + 40}, ${x}, ${y + height})`,
+                transform: `translate(${mojs.easing.quart.out(p) * -80},${-80 * mojs.easing.cubic.out(p) }) rotate(${-60 * mojs.easing.quad.out(p) + 40}, ${x}, ${y + height})`,
                 // style: `opacity: ${1 - ep}`
+            })
+
+            attr(note3, {
+                transform: `translate(${mojs.easing.elastic.out(p) * -200},${-80 * mojs.easing.circ.out(p) }) rotate(${-90 * mojs.easing.bounce.out(p) + 45}, ${x}, ${y + height})`
+            })
+        },
+        onRepeatComplete(){
+        }
+    }).play();
+
+    var wing = svg.querySelector('#wing')
+    let posWing = wing.getBBox()
+    var tail = svg.querySelector('#tail')
+    let posTail = tail.getBBox()
+    const tween1 = new mojs.Tween({
+        duration: 600,
+        repeat: 9999,
+        delay: 0,
+        isYoyo: true,
+        easing: 'sin.out',
+        onUpdate(ep, p, isForward) {
+            attr(wing, {
+              transform: `rotate(${10 * ep},${posWing.x + posWing.width * 0.6426}, ${posWing.y})`
+               // skewX(${30 * mojs.easing.quint.out(p)}) skewY(${30 * mojs.easing.expo.out(p)})
+            })
+            attr(tail, {
+              transform: `rotate(${-20 * ep + 10},${posTail.x + posTail.width}, ${posTail.y})`
+               // skewX(${30 * mojs.easing.quint.out(p)}) skewY(${30 * mojs.easing.expo.out(p)})
             })
         },
         onRepeatComplete(){
