@@ -1,4 +1,4 @@
-import '../css/sass/animate.scss';
+import '../css/sass/singing-bird.scss';
 import {
     attr,
     createSVG
@@ -16,6 +16,9 @@ const color1 = '#81daef',
 load('/assets/svgs/singing-bird.svg', svg => {
     document.getElementById('early-birld-svg-wrapper').appendChild(svg)
     svg = document.querySelector('#early-birld-svg-wrapper svg')
+    attr(svg, {
+      style: `transform: translate3d(0,100px,0)`
+    })
     attr(svg, {
         width: '320px',
         height: '320px'
@@ -42,7 +45,6 @@ load('/assets/svgs/singing-bird.svg', svg => {
     svg.appendChild(note3)
 
     const laser1E = mojs.easing.path('M0,400S58,111.1,80.5,175.1s43,286.4,63,110.4,46.3-214.8,70.8-71.8S264.5,369,285,225.5s16.6-209.7,35.1-118.2S349.5,258.5,357,210,400,0,400,0');
-
     const tween = new mojs.Tween({
         duration: 1500,
         repeat: 9999,
@@ -89,6 +91,9 @@ load('/assets/svgs/singing-bird.svg', svg => {
               transform: `rotate(${-20 * ep + 10},${posTail.x + posTail.width}, ${posTail.y})`
                // skewX(${30 * mojs.easing.quint.out(p)}) skewY(${30 * mojs.easing.expo.out(p)})
             })
+            // attr(svg, {
+            //   style: `transform: translate3d(${-20 * ep}%,${20 * ep}%,0)`
+            // })
         },
         onRepeatComplete(){
         }
