@@ -1,0 +1,29 @@
+#burst-demo-wrapper {
+    text-align: center;
+    display: -ms-flexbox;
+    -ms-flex-pack: center;
+    -ms-flex-align: center;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-align-content: center;
+    align-content: center;
+    height: 100%;
+}
+
+#button-horse {
+    cursor: pointer;
+    position: relative;
+    color: #c0c1c3;
+    border: 0;
+    background: none;
+    overflow: visible;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    &:focus{
+      border: 0;
+      outline: none;
+    }
+}

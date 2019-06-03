@@ -1,4 +1,5 @@
 import '../css/index.css'
 import './shape'
-import './animate'
+import './singingBird'
 import './shapeSwirl'
+import './burst'

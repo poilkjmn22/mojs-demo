@@ -53,17 +53,17 @@ load('/assets/svgs/singing-bird.svg', svg => {
             // var laser1EProgress = laser1E(ep);
             // console.dir(laser1EProgress)
             attr(note, {
-                transform: `translate(${mojs.easing.ease.out(p) * 80},${-160 * mojs.easing.back.out(p) }) rotate(${60 * mojs.easing.sin.out(p) - 40}, ${x}, ${y + height})`,
+                transform: `translate(${mojs.easing.ease.out(ep) * 80},${-160 * mojs.easing.back.out(ep) }) rotate(${60 * mojs.easing.sin.out(ep) - 40}, ${x}, ${y + height})`,
                 // style: `opacity: ${1 - ep}`
             })
 
             attr(note2, {
-                transform: `translate(${mojs.easing.quart.out(p) * -80},${-80 * mojs.easing.cubic.out(p) }) rotate(${-60 * mojs.easing.quad.out(p) + 40}, ${x}, ${y + height})`,
+                transform: `translate(${mojs.easing.quart.out(ep) * -80},${-80 * mojs.easing.cubic.out(ep) }) rotate(${-60 * mojs.easing.quad.out(ep) + 40}, ${x}, ${y + height})`,
                 // style: `opacity: ${1 - ep}`
             })
 
             attr(note3, {
-                transform: `translate(${mojs.easing.elastic.out(p) * -200},${-80 * mojs.easing.circ.out(p) }) rotate(${-90 * mojs.easing.bounce.out(p) + 45}, ${x}, ${y + height})`
+                transform: `translate(${mojs.easing.elastic.out(ep) * -200},${-80 * mojs.easing.circ.out(ep) }) rotate(${-90 * mojs.easing.bounce.out(ep) + 45}, ${x}, ${y + height})`
             })
         },
         onRepeatComplete(){
